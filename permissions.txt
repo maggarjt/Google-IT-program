@@ -1,0 +1,37 @@
+icacls c:\Users\Jesse    shows who can access file
+
+output shows
+
+Jesse: (oi)(ci)(F)
+
+oi = object inherit
+
+ci = container inherit
+
+F = full access (full control)
+
+WINDOWS permissions
+read
+read/execute
+modify (read,execute,write)
+full control   (modify + ownership to modify ACLs)
+
+LINUX Permission
+read 
+write
+execute
+  ls -l(long listing)
+  ls -la  (all files including hidden)
+  ls -lah (all files, hidden and file sizes converted to easy read)
+  ls -lar (reverse)
+
+
+
+ADMIN from CMD or powershell WINDOWS
+
+net user /add Jesse Pa5sword /passwordchg:yes 
+
+makes user account and forces pass change on next login  
+good so it separates admin from user password knowledge
+
+
