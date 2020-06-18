@@ -1,0 +1,63 @@
+LINUX
+==============================================================
+
+change mode
+
+chmod  u(owner)
+       g(group)
+	0(other users)
+
+
++ or -
+
+	chmod u+x filename.txt
+
+	change permission to add executable permission
+
+chmod u-x filename.txt
+change permission to remove executable permission
+
+	multiple permissions
+	chmod u +rx filename.txt
+	(adds read and execute permissions)
+
+	chmod ugo+r filename.txt
+	adds read to user, all groups that can access
+
+
+chmod 754 filename.txt
+7 owners  4r +2w + 1exe
+5 groups   4r + 1exe
+7 all other users
+
+
+sudo chown devan filename.txt
+ls -l filename to check ownership
+sudo chgrp best_group filename.txt
+
+Changing files owned by root wothout sudo
+-----------------------------------------
+change password
+passwd
+enter...enter...
+
+ls -l /etc/shadow  (error because owned by root)
+ls -l /userbin/password
+ls - l /usr/bin/wall
+
+Sticky bit  (only owner or rooot can delete but anyonre can write)
+
+
+===============================================================
+WINDOWS
+
+computer management
+read permissions under advanced
+CLI powershel icacl command
+
+icacls c:\windows\temp   *let everyone do it
+
+Create a folder
+mkdir c:\windows\temp\example
+icacls C:\windows\Temp\example >> icacls.txt
+cat icacls.txt
