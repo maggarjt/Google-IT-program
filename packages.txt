@@ -1,0 +1,39 @@
+Compressing with archives from powershell or CLI
+
+WINDOWS
+
+Compress-Archive -Path c:\etc\directory_with_files\  ~\Desktop\new_archive.zip
+
+ls ~\Desktop   to verify
+
+LINUX
+
+command 7z   e to extract
+ 
+~$ 7z e my_archive.tar
+~$ ls    (to verify)
+
+
+OTHER TOOLS 
+
+tar command  alternative archive type  converts group of files to archive
+archives referred to as "tarballs"
+
+tar options archive_name file_names
+
+tar -cf      c-create  f-prepares filename of archive
+-cvf   verbose version that lists files archived
+tar -cf *        all files in dorectory archived
+
+
+PACKAGE DEPENDENCIES
+
+DLL  dynamic link library    holds codes and procedures for windows, can be used by multiple programs at same time
+example  :   physics.dll and render.dll for game play and video rendering accesssed by program 
+
+
+>  Find-Package sysinternals -IncludeDependencies
+no match found.....
+Register-PackageSource
+Get-PackageSource to verify
+Find-Package sysinternals -IncludeDependencies
