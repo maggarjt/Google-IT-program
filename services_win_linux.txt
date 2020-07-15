@@ -1,0 +1,57 @@
+Get-Service wuauserv
+Stop-Service
+Start-service
+
+Piping results for easier consumption
+Get-Service | Format-List *
+{returns all services with running status and options)
+
+
+
+LINUX
+
+	~$ service ntp status
+(checks status of ntp service)
+
+	~$ sudo date -s "2107-01-01 00:00:00"
+(sets specific date for ntp, will be ignored if over 128 milliseconds away)
+
+	~$ date
+{returns date)
+
+	~$ sudo service ntp start
+	~$ sudo service ntp stop
+	~$ sudo service ntp restart
+	
+
+sudo apt install vsftpd
+lftp localhost                 -->fails
+sudo vim /etc/vsftpd.conf
+lftp localhost                 -->fails again
+sudop service vsftpd reload    -->rereads file and more importantly allows 
+                               pre-existing connections to maintain connection 
+                               without interruption
+					
+lftp localhost                 --> success!
+
+
+Linux commands used
+sudo
+ls
+mv <name><newname>
+tail<file>  last ten lines
+cat<file> print whole contents
+grep<pattern><file> filters text according to pattern
+less<file> browse a file
+
+put them together
+----------------------------
+
+sudo cat /var/log/syslog | grep error | tail
+
+superuser do cat (prints file) | feed it to the grep to find error listings| return last ten lines (most recent)
+
+
+Check services and status of specific rsyslog
+
+sudo service rsyslog status
