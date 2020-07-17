@@ -1,0 +1,73 @@
+DNSMASQ  can run as a DNS server or DHCP server
+to provide DNS records or DHCP, TFTP and PXE booting services
+
+running as dns server with logging
+
+dis www.example.com @localhost
+	checks for name in local cached query is applicable
+
+dnsmasq will contact root-->TL-->authorative server returns
+
+DNSMASQ can be authorative 
+make a file called myhosts.txt   
+format of:
+ 192.168.44.7 www.example.com
+192.168.44.8  www.anywho.com
+
+
+
+
+RUN DNSMASQ IN DEBUG
+
+sudo dnsmasq -d -q -H myhosts.txt
+runs dnsmasq in debug mode -d     loggin do queries -q  host file local -H
+
+dnsmasq will return info of what source info is returned from 
+NXDOMAIN  -->  no results
+myhosts.txt  --> if it finds data in local host file
+cached   -->  caching DNS server service from dnsmasq program list
+               that is created with each query
+
+
+-----------------------------------------------------------------
+DHCP server functions of dnsmasq  eth_srv is the interface for DHCP
+
+> ip address show eth_srv
+returns 192.168.1.1/24       192.168.1.0 -> 192.168.1.255  (/24 masking notation)
+
+>ip address show eth_cli
+if doesnt have a ip configured we use dhcp service in dnsmasq
+
+>cat dhcp.conf  --> to viewe configuration file
+will contain interface DHCP listens to
+interface=eth_srv
+
+Config File***************************************************
+bind-interfaces
+keeps service focused on one client, allows multiple dnsmasq servers on specific interfaces
+
+Domain name sent to dhcp clients
+domain=example
+
+Default gateway sent to  DHCP clients
+dhcp-option=option:dns-server,192.168.1.1 
+(local machine)
+
+DNS servers to announce to dhcp clients
+dhcp-option=option:dns-server,192.168.1.1
+
+dyhamic range of IP's and lease time
+dhcp-range-192.168.1.50,192.168.1.100,12h
+
+
+
+**************************************************************
+tell dnsmasq to listen for queries using this config
+> sudo dnsmasq -d -q -C dhcp.config
+
+run a dhcp client on a different machine, physical or virtual
+sudo dhclient -i eth_cli -v  (run on eth_cli interface, -v for full output)
+
+observe interface
+ip address show eth_cli
+shows
